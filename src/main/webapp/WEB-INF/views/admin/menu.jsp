@@ -31,8 +31,8 @@
 					<li><a href="${pageContext.request.contextPath}/admin/user/index"><i class="icon-pencil"></i>会员管理</a></li>
 					<li><a href="${pageContext.request.contextPath}/admin/orderimport/index"><i class="icon-pencil"></i>订单导入</a></li>
 					<li><a href="${pageContext.request.contextPath}/admin/user/index"><i class="icon-pencil"></i>订单处理</a></li>		
-					<li><a href="${pageContext.request.contextPath}/admin/user/index"><i class="icon-pencil"></i>订单查询</a></li>		
-					<li><a href="${pageContext.request.contextPath}/admin/user/index"><i class="icon-pencil"></i>订单提交</a></li>	
+					<li><a href="${pageContext.request.contextPath}/admin/order/index"><i class="icon-pencil"></i>订单查询</a></li>		
+					<li><a href="${pageContext.request.contextPath}/admin/ordersubmit/index"><i class="icon-pencil"></i>订单提交</a></li>	
 					<li><a href="${pageContext.request.contextPath}/admin/user/index"><i class="icon-pencil"></i>订单状态查询</a></li>	
 					</c:if>
 				<c:if test="${sessionScope.adminuser.username!='admin'}">

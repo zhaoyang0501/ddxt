@@ -51,4 +51,7 @@ public class OrderService {
      public void save(Order order){
     	orderRepository.save(order);
      }
+     public void save(List<Order> order){
+     	orderRepository.save(order);
+      }
 }

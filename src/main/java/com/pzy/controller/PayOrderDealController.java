@@ -1,6 +1,5 @@
 package com.pzy.controller;
 import java.text.ParseException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,23 +14,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pzy.entity.Order;
+import com.pzy.entity.PayOrder;
 import com.pzy.service.ClubService;
 import com.pzy.service.OrderService;
+import com.pzy.service.PayOrderService;
 /***
  * @author panchaoyang
  *qq 263608237
  */
 @Controller
-@RequestMapping("/admin/order")
-public class OrderController {
+@RequestMapping("/admin/orderdeal")
+public class PayOrderDealController {
 	@Autowired
 	private OrderService orderService;
 	@Autowired
-	private ClubService clubService;
+	private PayOrderService payOrderService;
+
 	@RequestMapping("index")
 	public String index(Model model) {
-		model.addAttribute("clubs", clubService.findAll());
-		return "admin/order/index";
+		return "admin/orderdeal/index";
 	}
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	@ResponseBody
@@ -42,32 +43,15 @@ public class OrderController {
 			) throws ParseException {
 		int pageNumber = (int) (iDisplayStart / iDisplayLength) + 1;
 		int pageSize = iDisplayLength;
-		Page<Order> orders = orderService.findAll(pageNumber, pageSize, ordername);
+		Page<PayOrder> payOrders = payOrderService.findAll(pageNumber, pageSize, ordername);
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("aaData", orders.getContent());
-		map.put("iTotalRecords", orders.getTotalElements());
-		map.put("iTotalDisplayRecords", orders.getTotalElements());
+		map.put("aaData", payOrders.getContent());
+		map.put("iTotalRecords", payOrders.getTotalElements());
+		map.put("iTotalDisplayRecords", payOrders.getTotalElements());
 		map.put("sEcho", sEcho);
 		return map;
 	}
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Object> save(Order order) {
-		orderService.save(order);
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("state", "success");
-		map.put("msg", "保存成功");
-		return map;
-	}
-	@RequestMapping(value = "/update")
-	@ResponseBody
-	public Map<String, Object> update(Order order) {
-		orderService.save(order);
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("state", "success");
-		map.put("msg", "保存成功");
-		return map;
-	}
+	
 	@RequestMapping(value = "/delete/{id}")
 	@ResponseBody
 	public Map<String, Object> delete(@PathVariable Long id) {
@@ -81,15 +65,5 @@ public class OrderController {
 			map.put("msg", "删除失败，外键约束");
 		}
         return map;
-	}
-
-	@RequestMapping(value = "/get/{id}")
-	@ResponseBody
-	public Map<String, Object> get(@PathVariable Long id ) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("object", orderService.find(id));
-		map.put("state", "success");
-		map.put("msg", "成功");
-		return map;
 	}
 }

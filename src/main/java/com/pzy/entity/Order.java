@@ -2,16 +2,18 @@ package com.pzy.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name = "t_order")
 public class Order {
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	   @GenericGenerator(name = "test", strategy = "uuid")
+	@Column(length=20)
  private String id;
  private Date importDate;
  private Date ipdateDate;
