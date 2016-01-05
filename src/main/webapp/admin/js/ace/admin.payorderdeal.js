@@ -31,11 +31,25 @@ jQuery.adminPayorderdeal = {
 						$('[rel="popover"],[data-rel="popover"]').popover();
 					},
 					"fnServerData" : function(sSource, aoData, fnCallback) {
-						var name = $("#_name").val();
-						if (!!name) {
+						var user = $("#_user").val();
+						if (!!user) {
 							aoData.push({
-								"name" : "username",
-								"value" : name
+								"name" : "user",
+								"value" : user
+							});
+						}
+						var id = $("#_id").val();
+						if (!!id) {
+							aoData.push({
+								"name" : "id",
+								"value" : id
+							});
+						}
+						var state = $("#_state").val();
+						if (!!state) {
+							aoData.push({
+								"name" : "state",
+								"value" : state
 							});
 						}
 						$.ajax({
@@ -80,12 +94,8 @@ jQuery.adminPayorderdeal = {
 							var operate = '<div class="btn-group">';
 							operate += '<button class="btn btn-info dropdown-toggle" data-toggle="dropdown"> 操作 <span class="caret"></span></button>';
 							operate += ' <ul class="dropdown-menu">';
-							operate += '<li><a onclick="$.ims.attenceStateCheck.showAbsenteeModal('+oObj.aData.id+')"><i class="icon-edit"></i>发货</a></li>';
-							operate += '<li><a onclick="$.ims.attenceStateCheck.showDayOffModal('+oObj.aData.id+')"><i class="icon-wrench"></i>请假 </a></li>';
-							operate += '<li><a onclick="$.ims.attenceStateCheck.showTravelModal('+oObj.aData.id+')"><i class="icon-wrench"></i> 出差</a></li>';
-							operate += '<li><a onclick="$.ims.attenceStateCheck.showOkModal('+oObj.aData.id+')"><i class="icon-wrench"></i> 正班</a></li>';
-							operate += '<li><a onclick="$.ims.attenceStateCheck.showLaterModal('+oObj.aData.id+')"><i class="icon-wrench"></i> 迟到</a></li>';
-							operate += '<li><a onclick="$.ims.attenceStateCheck.showUnKnownModal('+oObj.aData.id+')"><i class="icon-wrench"></i> 未知</a></li>';
+							operate += '<li><a onclick="$.adminPayorderdeal.showAbsenteeModal('+oObj.aData.id+')"><i class="icon-edit"></i>发货</a></li>';
+							operate += '<li><a onclick="$.adminPayorderdeal.orderpay('+oObj.aData.id+')"><i class="icon-wrench"></i>付款 </a></li>';
 							operate += '</ul>';
 							operate += '</div>';
 							return operate;
@@ -99,10 +109,29 @@ jQuery.adminPayorderdeal = {
 
 				});
 			} else {
-				var oSettings = this.userDataTable.fnSettings();
+				var oSettings = this.payorderdealDataTable.fnSettings();
 				oSettings._iDisplayStart = 0;
-				this.userDataTable.fnDraw(oSettings);
+				this.payorderdealDataTable.fnDraw(oSettings);
 			}
 
-		}
+		},
+	orderpay :function(id){
+		bootbox.confirm( "是否确认付款？", function (result) {
+	        if(result){
+	        	$.ajax({
+	    			type : "get",
+	    			url : $.ace.getContextPath() + "/admin/orderdeal/pay/"+id,
+	    			dataType : "json",
+	    			success : function(json) {
+	    				if(json.state=='success'){
+	    					noty({"text":""+ json.msg +"","layout":"top","type":"success","timeout":"2000"});
+	    					$.adminUser.initSearchDataTable();
+	    				}else{
+	    					noty({"text":""+ json.resultMap.msg +"","layout":"top","type":"warning"});
+	    				}
+	    			}
+	    		});
+	        }
+	    });
+	}
 };

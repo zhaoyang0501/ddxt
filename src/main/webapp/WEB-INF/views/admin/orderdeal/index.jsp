@@ -43,11 +43,13 @@
 							</div>
 							<div class="box well form-inline">
 								
-								<input type="text" id="_name" placeholder='会员账号' >
-								<input type="text" id="_name" placeholder='订单编号' >
-								<select placeholder='订单状态'>
-								<option>--选择订单状态--</option>
-									<option>已提交</option>
+								<input type="text" id="_user" placeholder='会员账号' >
+								<input type="text" id="_id" placeholder='订单编号' >
+								<select id='_state' placeholder='订单状态'>
+								    <option value="">--选择订单状态--</option>
+									<option value="已提交">已提交</option>
+									<option value="已发货">已发货</option>
+									<option value="已付款" >已付款</option>
 								</select>
 								<a onclick="$.adminPayorderdeal.initSearchDataTable()"
 									class="btn btn-info" data-loading-text="正在加载..."><i class="icon-search"></i>查询</a>

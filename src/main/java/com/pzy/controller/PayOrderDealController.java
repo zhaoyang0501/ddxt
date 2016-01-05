@@ -37,11 +37,14 @@ public class PayOrderDealController {
 	public Map<String, Object> list(
 			@RequestParam(value = "sEcho", defaultValue = "1") int sEcho,
 			@RequestParam(value = "iDisplayStart", defaultValue = "0") int iDisplayStart,
-			@RequestParam(value = "iDisplayLength", defaultValue = "10") int iDisplayLength, String ordername
+			@RequestParam(value = "iDisplayLength", defaultValue = "10") int iDisplayLength,
+			String user,
+			String id,
+			String state
 			) throws ParseException {
 		int pageNumber = (int) (iDisplayStart / iDisplayLength) + 1;
 		int pageSize = iDisplayLength;
-		Page<PayOrder> payOrders = payOrderService.findAll(pageNumber, pageSize, ordername);
+		Page<PayOrder> payOrders = payOrderService.findAll(pageNumber, pageSize, user,id,state);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("aaData", payOrders.getContent());
 		map.put("iTotalRecords", payOrders.getTotalElements());

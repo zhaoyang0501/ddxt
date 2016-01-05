@@ -44,7 +44,7 @@ public class OrderStateController {
 			) throws ParseException {
 		int pageNumber = (int) (iDisplayStart / iDisplayLength) + 1;
 		int pageSize = iDisplayLength;
-		Page<PayOrder> orders = payOrderService.findAll(pageNumber, pageSize, ordername);
+		Page<PayOrder> orders = payOrderService.findAll(pageNumber, pageSize, ordername,"","");
 		for(PayOrder payOrder:orders.getContent()){
 			if(payOrder.getOrder()!=null&&payOrder.getOrder().getC4()!=null){
 				payOrder.getOrder().setC4(StringUtil.getEncodeStr(payOrder.getOrder().getC4()));

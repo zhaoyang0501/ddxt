@@ -26,15 +26,21 @@ public class PayOrderService {
      public List<PayOrder> findAll() {
           return (List<PayOrder>) payOrderRepository.findAll();
      }
-     public Page<PayOrder> findAll(final int pageNumber, final int pageSize,final String payOrderName){
+     public Page<PayOrder> findAll(final int pageNumber, final int pageSize,final String user,final String id,final String state){
                PageRequest pageRequest = new PageRequest(pageNumber - 1, pageSize, new Sort(Direction.DESC, "id"));
               
                Specification<PayOrder> spec = new Specification<PayOrder>() {
                     @Override
                     public Predicate toPredicate(Root<PayOrder> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                     Predicate predicate = cb.conjunction();
-                    if (payOrderName != null) {
-                         predicate.getExpressions().add(cb.like(root.get("name").as(String.class), payOrderName+"%"));
+                    if (user != null) {
+                         predicate.getExpressions().add(cb.equal(root.get("user").get("username").as(String.class), user));
+                    }
+                    if (id != null) {
+                        predicate.getExpressions().add(cb.equal(root.get("order").get("id").as(String.class), id));
+                    }
+                    if (state != null) {
+                        predicate.getExpressions().add(cb.equal(root.get("state").as(String.class), state));
                     }
                     return predicate;
                     }
