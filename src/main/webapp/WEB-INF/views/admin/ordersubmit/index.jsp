@@ -33,7 +33,7 @@
 				<div class="row-fluid ">
 					<div class="span12">
 						<div class="content-widgets light-gray" style="height: 700px">
-						<div class="widget-head blue">
+						<div class="widget-head  bondi-blue" >
 							<h3>订单提交</h3>
 						</div>
 						<div class="widget-container">
