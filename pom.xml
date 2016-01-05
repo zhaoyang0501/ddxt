@@ -14,6 +14,11 @@
 	<dependencies>
 
 		<!--spring3.1.1start -->
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.3.1</version>
+		</dependency>
 <dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>

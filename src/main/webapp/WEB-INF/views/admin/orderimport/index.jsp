@@ -21,8 +21,8 @@
 			minView: 2,
 			forceParse: 0
 	    });
-		if("${tip}" != null && "${tip}" != ""){
-			noty({"text":"${tip}","layout":"top","type":"success","timeout":"2000"});
+		if("${msg}" != null && "${msg}" != ""){
+			noty({"text":"${msg}","layout":"top","type":"success","timeout":"2000"});
 		}
 	});
 </script>
@@ -48,11 +48,11 @@
 							<h3>导入订单文件</h3>
 						</div>
 						<div class="widget-container">
-							<form class="form-horizontal">
+							<form class="form-horizontal" method="POST" enctype ="multipart/form-data" action="${pageContext.request.contextPath}/admin/orderimport/index">
 								<div class="control-group">
 									<label class="control-label">EXCEL文件</label>
 									<div class="controls">
-										<input name="" type="file" class="">
+										<input name="file" type="file" class="">
 									</div>
 								</div>
 								

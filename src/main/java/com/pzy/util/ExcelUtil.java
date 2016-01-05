@@ -28,8 +28,7 @@ public class ExcelUtil {
      * @return
      * @throws IOException
      */
-    public static List<Order> readXls(String path) throws IOException {
-        InputStream is = new FileInputStream(path);
+    public static List<Order> readXls(InputStream  is) throws IOException {
         HSSFWorkbook workbook = new HSSFWorkbook(is);
         List<Order> list = new ArrayList<Order>();
         HSSFSheet sheet = workbook.getSheetAt(0);
@@ -73,8 +72,8 @@ public class ExcelUtil {
         }
     }
     
-    public static void main(String arg[]) throws IOException{
+   /* public static void main(String arg[]) throws IOException{
     	List<Order> list=ExcelUtil.readXls("d:\\1.xls");
     	System.out.println(list.size());
-    }
+    }*/
 }
