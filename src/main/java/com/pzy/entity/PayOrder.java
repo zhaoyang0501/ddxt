@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 @Table(name = "t_PayOrder")
 public class PayOrder {
@@ -23,6 +25,7 @@ public class PayOrder {
 	@ManyToOne(fetch = FetchType.EAGER)
 	private User user;
 	private String state;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date  submitDate;
 	public Long getId() {
 		return id;

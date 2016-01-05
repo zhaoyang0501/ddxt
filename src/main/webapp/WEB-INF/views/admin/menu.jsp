@@ -36,11 +36,12 @@
 					<li><a href="${pageContext.request.contextPath}/admin/user/index"><i class="icon-pencil"></i>订单状态查询</a></li>	
 					</c:if>
 				<c:if test="${sessionScope.adminuser.username!='admin'}">
-						<li><a href="${pageContext.request.contextPath}/admin/apply/create"><i class="icon-pencil"></i>社团经费申请</a></li>
-						<li><a href="${pageContext.request.contextPath}/admin/club/index"><i class="icon-pencil"></i>社团查询</a></li>	
-						<li><a href="${pageContext.request.contextPath}/admin/dept/index"><i class="icon-pencil"></i>社团部门查询</a></li>
-						<li><a href="${pageContext.request.contextPath}/admin/userview/index"><i class="icon-pencil"></i>社团会员</a></li>
-						<li><a href="${pageContext.request.contextPath}/admin/work/index"><i class="icon-pencil"></i>社团活动</a></li>
+						<li><a href="${pageContext.request.contextPath}/admin/user/index"><i class="icon-pencil"></i>会员管理</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/orderimport/index"><i class="icon-pencil"></i>订单导入</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/orderdeal/index"><i class="icon-pencil"></i>订单处理</a></li>		
+					<li><a href="${pageContext.request.contextPath}/admin/order/index"><i class="icon-pencil"></i>订单查询</a></li>		
+					<li><a href="${pageContext.request.contextPath}/admin/ordersubmit/index"><i class="icon-pencil"></i>订单提交</a></li>	
+					<li><a href="${pageContext.request.contextPath}/admin/user/index"><i class="icon-pencil"></i>订单状态查询</a></li>	
 			
 				</c:if>
 				</ul>

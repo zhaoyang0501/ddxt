@@ -10,17 +10,6 @@
 <script src="${pageContext.request.contextPath}/admin/js/falgun/bootstrap-datetimepicker.zh-CN.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$(".date").datetimepicker({
-			language:  'zh-CN',
-	        weekStart: 1,
-	        todayBtn:  1,
-	        format:'yyyy-mm-dd',
-			autoclose: 1,
-			todayHighlight: 1,
-			startView: 2,
-			minView: 2,
-			forceParse: 0
-	    });
 		if("${tip}" != null && "${tip}" != ""){
 			noty({"text":"${tip}","layout":"top","type":"success","timeout":"2000"});
 		}
@@ -48,7 +37,7 @@
 							<h3>订单提交</h3>
 						</div>
 						<div class="widget-container">
-							<form class="form-horizontal" action="${pageContext.request.contextPath}/admin/ordersubmit/save">
+							<form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/admin/ordersubmit/save">
 								<div class="control-group">
 									<label class="control-label">订单编号</label>
 									<div class="controls">

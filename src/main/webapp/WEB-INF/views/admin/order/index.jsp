@@ -4,7 +4,7 @@
 <html lang="ch">
 <%@ include file="../common/meta.jsp"%>
 <head>
-<script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/ace/admin.userview.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/ace/admin.order.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/falgun/bootbox.js"></script>
 <script src="${pageContext.request.contextPath}/admin/js/falgun/bootstrap-datetimepicker.min.js"></script>
 <script src="${pageContext.request.contextPath}/admin/js/falgun/bootstrap-datetimepicker.zh-CN.js"></script>
@@ -37,33 +37,48 @@
 			<div class="container-fluid">
 				<div class="row-fluid ">
 					<div class="span12">
-						<div class="content-widgets light-gray">
+						<div class="content-widgets ">
 							<div class="widget-head  bondi-blue" >
 								<h3>订单查询</h3>
 							</div>
 							<div class="box well form-inline">
-								<span>会员名称：</span>
-								<input type="text" id="_name" >
-								<a onclick="$.adminUserview.initSearchDataTable()"
+								
+								<input type="text" id="_name" placeholder='订单编号' >
+								<select placeholder='提现'>
+								<option>--订单类型--</option>
+									<option>提现订单</option>
+									<option>非提现订单</option>
+								</select>
+								<a onclick="$.adminOrder.initSearchDataTable()"
 									class="btn btn-info" data-loading-text="正在加载..."><i class="icon-search"></i>查询</a>
 							</div>
-							<div class="widget-container">
+							<div class="row-fluid">
 								<table class="responsive table table-striped table-bordered"
 									id="dt_table_view">
 									<thead>
 										<tr>
-											<th >ID</th>
-											<th >用户名</th>
-											<th >密码</th>
-											<th >姓名</th>
-											<th >地址</th>
-											<th >电话</th>
-											<th >邮件</th>
-											<th >学校</th>
-											<th >班级</th>
-											<th >所属社团</th>
-											<th >职务</th>
-											<th >加入日期</th>
+											<th >买家会员名</th>
+											<th >	订单编号</th>
+											<th >商品ID	</th>
+											<th >	商品规格ID	</th>
+											<th >	商品名称	</th>
+											<th >	商品规格名称</th>	
+											<th >	价格	</th>
+											<th >	购买数量	</th>
+											<th >	运费	</th>
+											<th >	买家实际支付金额</th>	
+											<th >	订单总价	</th>
+											<th >	订单状态	</th>
+											<th >	收货人姓名</th>	
+											<th >	收货地址	</th>
+											<th >	联系电话	</th>
+											<th >	订单下单时间</th>	
+											<th >	支付时间	</th>
+											<th >	物流单号</th>	
+											<th >	物流公司	</th>
+											<th >	订单备注	</th>
+											<th >	商家备注</th>
+											
 										</tr>
 									</thead>
 									<tbody>

@@ -1,19 +1,19 @@
 package com.pzy.controller;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.pzy.entity.Order;
 import com.pzy.entity.PayOrder;
-import com.pzy.service.ClubService;
-import com.pzy.service.OrderService;
+import com.pzy.entity.User;
 import com.pzy.service.PayOrderService;
 /***
  * @author panchaoyang
@@ -31,12 +31,14 @@ public class OrderSubmitController {
 	
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public Map<String, Object> save(PayOrder payOrder) {
+	public String save(PayOrder payOrder,HttpSession httpSession,Model model) {
+		User user=(User)httpSession.getAttribute("adminuser");
 		payOrder.setState("已提交");
+		payOrder.setUser(user);
+		payOrder.setSubmitDate(new Date());
 		payOrderService.save(payOrder);
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("state", "success");
-		map.put("msg", "保存成功");
-		return map;
+		model.addAttribute("state", "success");
+		model.addAttribute("tip", "提交成功");
+		return "admin/ordersubmit/index";
 	}
 }
