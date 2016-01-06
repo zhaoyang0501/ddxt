@@ -17,7 +17,7 @@
 	<div class="left-nav clearfix">
 		<div class="left-primary-nav">
 			<ul id="myTab">
-				<li  class="active"><a href="#dailyreport" class="icon-calendar" data-original-title="日报"></a></li>
+				<li  class="active"><a href="#dailyreport" class="icon-calendar" data-original-title="订单"></a></li>
 			</ul>
 		</div>
 		<div class="responsive-leftbar">

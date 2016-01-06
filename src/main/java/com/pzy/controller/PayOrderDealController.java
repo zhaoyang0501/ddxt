@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pzy.entity.PayOrder;
+import com.pzy.entity.User;
 import com.pzy.service.OrderService;
 import com.pzy.service.PayOrderService;
 /***
@@ -53,17 +54,39 @@ public class PayOrderDealController {
 		return map;
 	}
 	
-	@RequestMapping(value = "/delete/{id}")
+	@RequestMapping(value = "/send/{id}")
 	@ResponseBody
-	public Map<String, Object> delete(@PathVariable Long id) {
+	public Map<String, Object> send(@PathVariable Long id) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
-			orderService.delete(id);
+			PayOrder bean=payOrderService.find(id);
+			bean.setState("已发货");
+			payOrderService.save(bean);
 			map.put("state", "success");
-			map.put("msg", "删除成功");
+			map.put("msg", "发货成功");
 		} catch (Exception e) {
-			map.put("state", "error");
-			map.put("msg", "删除失败，外键约束");
+			map.put("state", "success");
+			map.put("msg", "发货失败");
+		}
+        return map;
+	}
+	
+	@RequestMapping(value = "/pay/{id}")
+	@ResponseBody
+	public Map<String, Object> pay(@PathVariable Long id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			PayOrder bean=payOrderService.find(id);
+			User user=bean.getUser();
+			bean.setState("已付款");
+			Double m=Double.valueOf(bean.getOrder().getC9());
+			bean.setPay(m*user.getP1()-user.getP2());
+			payOrderService.save(bean);
+			map.put("state", "success");
+			map.put("msg", "付款成功");
+		} catch (Exception e) {
+			map.put("state", "success");
+			map.put("msg", "付款成功");
 		}
         return map;
 	}

@@ -1,8 +1,7 @@
 package com.pzy.controller;
 import java.io.IOException;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,8 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.pzy.entity.Order;
 import com.pzy.entity.PayOrder;
 import com.pzy.entity.User;
+import com.pzy.service.OrderService;
 import com.pzy.service.PayOrderService;
 /***
  * @author panchaoyang
@@ -24,6 +25,8 @@ import com.pzy.service.PayOrderService;
 public class OrderSubmitController {
 	@Autowired
 	private PayOrderService payOrderService;
+	@Autowired
+	private OrderService orderService;
 	@RequestMapping("index")
 	public String index(Model model) throws IOException {
 		return "admin/ordersubmit/index";
@@ -32,13 +35,30 @@ public class OrderSubmitController {
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(PayOrder payOrder,HttpSession httpSession,Model model) {
+		model.addAttribute("state", "success");
+		model.addAttribute("tip", "提交成功");
+		
+		Order order=orderService.find(payOrder.getOid());
+		if(order==null){
+			payOrder.setState("暂未录入");
+			model.addAttribute("state", "success");
+			model.addAttribute("tip", "订单提交成功，等待工作人员录入");
+		}else{
+			payOrder.setOrder(order);
+			payOrder.setState("系统已接受");
+		}
+		List<PayOrder> oldpayOrders=payOrderService.findByOid(payOrder.getOid());
+		if(oldpayOrders.size()!=0){
+			model.addAttribute("state", "success");
+			model.addAttribute("tip", "订单已经提交，请勿重复提交");
+			return "admin/ordersubmit/index"; 
+		}
 		User user=(User)httpSession.getAttribute("adminuser");
-		payOrder.setState("已提交");
+		
 		payOrder.setUser(user);
 		payOrder.setSubmitDate(new Date());
 		payOrderService.save(payOrder);
-		model.addAttribute("state", "success");
-		model.addAttribute("tip", "提交成功");
+		
 		return "admin/ordersubmit/index";
 	}
 }

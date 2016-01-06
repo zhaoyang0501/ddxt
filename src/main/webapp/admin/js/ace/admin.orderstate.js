@@ -31,11 +31,18 @@ jQuery.adminOrderstate = {
 						$('[rel="popover"],[data-rel="popover"]').popover();
 					},
 					"fnServerData" : function(sSource, aoData, fnCallback) {
-						var name = $("#_name").val();
-						if (!!name) {
+						var begin = $("#_begin").val();
+						if (!!begin) {
 							aoData.push({
-								"name" : "username",
-								"value" : name
+								"name" : "begin",
+								"value" : begin
+							});
+						}
+						var end = $("#_end").val();
+							if (!!end) {
+								aoData.push({
+									"name" : "end",
+									"value" : end
 							});
 						}
 						$.ajax({
@@ -49,17 +56,15 @@ jQuery.adminOrderstate = {
 						});
 					},
 					"aoColumns" : [ {
-						"mDataProp" : "order.id"
+						"mDataProp" : "oid"
 					}, {
-						"mDataProp" : "order.c1"
+						"mDataProp" : "user.name"
 					}, {
 						"mDataProp" : "order.c4"
 					}, {
-						"mDataProp" : "order.c6"
-					}, {
-						"mDataProp" : "order.c7"
-					}, {
 						"mDataProp" : "order.c9"
+					},{
+						"mDataProp" : "pay"
 					},{
 						"mDataProp" : "order.c12"
 					}, {
@@ -69,7 +74,7 @@ jQuery.adminOrderstate = {
 					}],
 					"aoColumnDefs" : [
 					{
-						'aTargets' : [8],
+						'aTargets' : [7],
 						'fnRender' : function(oObj, sVal) {
 							 return "<span class='label label-success'>"+sVal+"</span>"
 						}

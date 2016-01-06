@@ -31,6 +31,20 @@ public class User implements Serializable {
 	private String level;
 	private String grade;
 	private String zfb;
+	private Double p1;
+	private Double p2;
+	public Double getP1() {
+		return p1;
+	}
+	public void setP1(Double p1) {
+		this.p1 = p1;
+	}
+	public Double getP2() {
+		return p2;
+	}
+	public void setP2(Double p2) {
+		this.p2 = p2;
+	}
 	public Long getId() {
 		return id;
 	}

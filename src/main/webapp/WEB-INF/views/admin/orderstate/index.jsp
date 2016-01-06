@@ -43,8 +43,16 @@
 							</div>
 							<div class="box well form-inline">
 								
-								<input type="text" id="_name" placeholder='提交日期起' >
-								<input type="text" id="_name" placeholder='提交日期止' >
+								<div class=" input-append date">
+										<input placeholder="提交日期起" id="_begin" style="width: 120px;" type="text" value="" readonly="readonly">
+										<span class="add-on"><i class="icon-th"></i></span>
+								</div>
+								
+								<div class=" input-append date">
+										<input placeholder="提交日期止" id="_end" style="width: 120px;" type="text" value="" readonly="readonly">
+										<span class="add-on"><i class="icon-th"></i></span>
+								</div>
+								
 								<a onclick="$.adminOrderstate.initSearchDataTable()"
 									class="btn btn-info" data-loading-text="正在加载..."><i class="icon-search"></i>查询</a>
 							</div>
@@ -56,9 +64,8 @@
 											<th >订单编号</th>
 											<th >买家会员名</th>
 											<th >商品名称</th>
-											<th >单价	</th>
-											<th >数量</th>
 											<th >实际支付</th>	
+											<th >税后金额</th>	
 											<th >收件人</th>
 											<th >提交日期</th>
 											<th >状态</th>

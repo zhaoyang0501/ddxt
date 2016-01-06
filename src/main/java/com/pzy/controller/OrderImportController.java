@@ -1,5 +1,4 @@
 package com.pzy.controller;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
@@ -21,8 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.pzy.entity.Order;
-import com.pzy.service.ClubService;
 import com.pzy.service.OrderService;
+import com.pzy.service.PayOrderService;
 import com.pzy.util.ExcelUtil;
 /***
  * @author panchaoyang
@@ -34,7 +33,7 @@ public class OrderImportController {
 	@Autowired
 	private OrderService orderService;
 	@Autowired
-	private ClubService clubService;
+	private PayOrderService payOrderService;
 	@RequestMapping(value="index" , method = RequestMethod.GET) 
 	public String index(Model model) throws IOException {
 		return "admin/orderimport/index";
@@ -56,6 +55,7 @@ public class OrderImportController {
      			order.setImportDate(new Date());
      		}
      		 orderService.save(orders);
+     		 payOrderService.updateAll();
      		 model.addAttribute("msg","成功导入"+orders.size()+"条数据");
         }
         return "admin/orderimport/index";

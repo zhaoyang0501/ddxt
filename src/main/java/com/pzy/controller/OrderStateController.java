@@ -3,20 +3,19 @@ import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.pzy.entity.Order;
 import com.pzy.entity.PayOrder;
-import com.pzy.service.ClubService;
+import com.pzy.entity.User;
 import com.pzy.service.OrderService;
 import com.pzy.service.PayOrderService;
 import com.pzy.util.StringUtil;
@@ -40,11 +39,15 @@ public class OrderStateController {
 	public Map<String, Object> list(
 			@RequestParam(value = "sEcho", defaultValue = "1") int sEcho,
 			@RequestParam(value = "iDisplayStart", defaultValue = "0") int iDisplayStart,
-			@RequestParam(value = "iDisplayLength", defaultValue = "10") int iDisplayLength, String ordername
-			) throws ParseException {
+			@RequestParam(value = "iDisplayLength", defaultValue = "10") int iDisplayLength, 
+			String begin,
+			String end,
+			HttpSession httpSession
+			) throws Exception {
 		int pageNumber = (int) (iDisplayStart / iDisplayLength) + 1;
 		int pageSize = iDisplayLength;
-		Page<PayOrder> orders = payOrderService.findAll(pageNumber, pageSize, null,null,null);
+		User user=(User)httpSession.getAttribute("adminuser");
+		Page<PayOrder> orders = payOrderService.findAllByUser(pageNumber, pageSize, user.getId(),begin,end);
 		for(PayOrder payOrder:orders.getContent()){
 			if(payOrder.getOrder()!=null&&payOrder.getOrder().getC4()!=null){
 				payOrder.getOrder().setC4(StringUtil.getEncodeStr(payOrder.getOrder().getC4()));

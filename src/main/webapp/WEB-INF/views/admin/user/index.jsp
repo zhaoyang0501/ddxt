@@ -60,6 +60,8 @@
 											<th >地址</th>
 											<th >邮件</th>
 											<th >支付宝账号</th>
+											<th >系数1</th>
+											<th >系数2</th>
 											<th >加入日期</th>
 											<th >操作</th>
 										</tr>
@@ -131,6 +133,19 @@
 								<label for="title" class="control-label">支付宝账号：</label>
 								<div class="controls">
 									<input type="text" name='zfb' id=zfb placeholder="">
+								</div>
+							</div>
+							<div class="control-group">
+								<label for="title" class="control-label">公式系数1：</label>
+								<div class="controls">
+									<input type="text" value="0.95" name='p1' id=p1 placeholder="">
+								</div>
+							</div>
+							
+							<div class="control-group">
+								<label for="title" class="control-label">公式系数2：</label>
+								<div class="controls">
+									<input type="text" value="10" name='p2' id=p2 placeholder="">
 								</div>
 							</div>
 						</form>

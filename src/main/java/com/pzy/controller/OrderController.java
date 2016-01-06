@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pzy.entity.Order;
-import com.pzy.service.ClubService;
 import com.pzy.service.OrderService;
 /***
  * @author panchaoyang
@@ -25,11 +24,8 @@ import com.pzy.service.OrderService;
 public class OrderController {
 	@Autowired
 	private OrderService orderService;
-	@Autowired
-	private ClubService clubService;
 	@RequestMapping("index")
 	public String index(Model model) {
-		model.addAttribute("clubs", clubService.findAll());
 		return "admin/order/index";
 	}
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
@@ -37,11 +33,12 @@ public class OrderController {
 	public Map<String, Object> list(
 			@RequestParam(value = "sEcho", defaultValue = "1") int sEcho,
 			@RequestParam(value = "iDisplayStart", defaultValue = "0") int iDisplayStart,
-			@RequestParam(value = "iDisplayLength", defaultValue = "10") int iDisplayLength, String ordername
+			@RequestParam(value = "iDisplayLength", defaultValue = "10") int iDisplayLength,
+			String id
 			) throws ParseException {
 		int pageNumber = (int) (iDisplayStart / iDisplayLength) + 1;
 		int pageSize = iDisplayLength;
-		Page<Order> orders = orderService.findAll(pageNumber, pageSize, ordername);
+		Page<Order> orders = orderService.findAll(pageNumber, pageSize, id);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("aaData", orders.getContent());
 		map.put("iTotalRecords", orders.getTotalElements());
@@ -69,7 +66,7 @@ public class OrderController {
 	}
 	@RequestMapping(value = "/delete/{id}")
 	@ResponseBody
-	public Map<String, Object> delete(@PathVariable Long id) {
+	public Map<String, Object> delete(@PathVariable String id) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			orderService.delete(id);
@@ -84,7 +81,7 @@ public class OrderController {
 
 	@RequestMapping(value = "/get/{id}")
 	@ResponseBody
-	public Map<String, Object> get(@PathVariable Long id ) {
+	public Map<String, Object> get(@PathVariable String id ) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("object", orderService.find(id));
 		map.put("state", "success");

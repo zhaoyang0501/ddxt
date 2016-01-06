@@ -61,15 +61,19 @@ jQuery.adminUser = {
 					},{
 						"mDataProp" : "zfb"
 					},{
+						"mDataProp" : "p1"
+					},{
+						"mDataProp" : "p2"
+					},{
 						"mDataProp" : "createDate"
 					},{
 						"mDataProp" : ""
 					}],
 					"aoColumnDefs" : [
 						{
-							'aTargets' : [7],
+							'aTargets' : [9],
 							'fnRender' : function(oObj, sVal) {
-								return"  <button class=\"btn2 btn-info\" onclick=\"$.adminUser.deleteUser("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button>";
+								return" <button class=\"btn2 btn-info\" onclick=\"$.adminUser.showEdit("+oObj.aData.id+")\"><i class=\"icon-edit\"></i> 修改</button>  <button class=\"btn2 btn-info\" onclick=\"$.adminUser.deleteUser("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button>";
 							}
 						},
 					 {
@@ -125,12 +129,10 @@ jQuery.adminUser = {
     					$("#tel").val(json.object.tel);
     					$("#email").val(json.object.email);
     					$("#address").val(json.object.address);
-    					$("#level").val(json.object.level);
-    					$("#manger").val(json.object.manger);
-    					$("#club.id").val(json.object.club.id);
-    					$("#job").val(json.object.job);
-    					$("#manger").val(json.object.manger);
-    					$("#yyzh").val(json.object.yyzh);
+    					$("#zfb").val(json.object.zfb);
+    					$("#p1").val(json.object.p1);
+    					$("#p2").val(json.object.p2);
+    					
     				}else{
     					noty({"text":""+ json.msg +"","layout":"top","type":"warning"});
     				}

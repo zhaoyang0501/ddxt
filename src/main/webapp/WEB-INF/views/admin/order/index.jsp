@@ -43,17 +43,13 @@
 							</div>
 							<div class="box well form-inline">
 								
-								<input type="text" id="_name" placeholder='订单编号' >
-								<select placeholder='提现'>
-								<option>--订单类型--</option>
-									<option>提现订单</option>
-									<option>非提现订单</option>
-								</select>
+								<input type="text" id="_id" placeholder='订单编号' >
+								
 								<a onclick="$.adminOrder.initSearchDataTable()"
 									class="btn btn-info" data-loading-text="正在加载..."><i class="icon-search"></i>查询</a>
 							</div>
-							<div class="row-fluid">
-								<table class="responsive table table-striped table-bordered"
+							<div class="row-fluid" style="overflow: scroll;">
+								<table style="width: 3000px" class="responsive table table-striped table-bordered"
 									id="dt_table_view">
 									<thead>
 										<tr>

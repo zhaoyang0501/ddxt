@@ -94,7 +94,7 @@ jQuery.adminPayorderdeal = {
 							var operate = '<div class="btn-group">';
 							operate += '<button class="btn btn-info dropdown-toggle" data-toggle="dropdown"> 操作 <span class="caret"></span></button>';
 							operate += ' <ul class="dropdown-menu">';
-							operate += '<li><a onclick="$.adminPayorderdeal.showAbsenteeModal('+oObj.aData.id+')"><i class="icon-edit"></i>发货</a></li>';
+							operate += '<li><a onclick="$.adminPayorderdeal.ordersend('+oObj.aData.id+')"><i class="icon-edit"></i>发货</a></li>';
 							operate += '<li><a onclick="$.adminPayorderdeal.orderpay('+oObj.aData.id+')"><i class="icon-wrench"></i>付款 </a></li>';
 							operate += '</ul>';
 							operate += '</div>';
@@ -115,6 +115,26 @@ jQuery.adminPayorderdeal = {
 			}
 
 		},
+		ordersend :function(id){
+			bootbox.confirm( "是否确认发货？", function (result) {
+		        if(result){
+		        	$.ajax({
+		    			type : "get",
+		    			url : $.ace.getContextPath() + "/admin/orderdeal/send/"+id,
+		    			dataType : "json",
+		    			success : function(json) {
+		    				if(json.state=='success'){
+		    					noty({"text":""+ json.msg +"","layout":"top","type":"success","timeout":"2000"});
+		    					$.adminPayorderdeal.initSearchDataTable();
+		    				}else{
+		    					noty({"text":""+ json.msg +"","layout":"top","type":"warning"});
+		    				}
+		    			}
+		    		});
+		        }
+		    });
+		},
+		
 	orderpay :function(id){
 		bootbox.confirm( "是否确认付款？", function (result) {
 	        if(result){
@@ -125,9 +145,9 @@ jQuery.adminPayorderdeal = {
 	    			success : function(json) {
 	    				if(json.state=='success'){
 	    					noty({"text":""+ json.msg +"","layout":"top","type":"success","timeout":"2000"});
-	    					$.adminUser.initSearchDataTable();
+	    					$.adminPayorderdeal.initSearchDataTable();
 	    				}else{
-	    					noty({"text":""+ json.resultMap.msg +"","layout":"top","type":"warning"});
+	    					noty({"text":""+ json.msg +"","layout":"top","type":"warning"});
 	    				}
 	    			}
 	    		});

@@ -21,12 +21,28 @@ public class PayOrder {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="order_id")
 	private Order order;
+	private String oid;
 	private String remark;
 	@ManyToOne(fetch = FetchType.EAGER)
 	private User user;
 	private String state;
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date  submitDate;
+	
+	private Double pay;
+	
+	public Double getPay() {
+		return pay;
+	}
+	public void setPay(Double pay) {
+		this.pay = pay;
+	}
+	public String getOid() {
+		return oid;
+	}
+	public void setOid(String oid) {
+		this.oid = oid;
+	}
 	public Long getId() {
 		return id;
 	}

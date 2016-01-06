@@ -41,7 +41,7 @@
 								<div class="control-group">
 									<label class="control-label">订单编号</label>
 									<div class="controls">
-										<input name="order.id" type="text" class="">
+										<input name="oid" type="text" class="">
 									</div>
 								</div>
 								

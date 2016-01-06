@@ -31,10 +31,10 @@ jQuery.adminOrder = {
 						$('[rel="popover"],[data-rel="popover"]').popover();
 					},
 					"fnServerData" : function(sSource, aoData, fnCallback) {
-						var name = $("#_name").val();
+						var name = $("#_id").val();
 						if (!!name) {
 							aoData.push({
-								"name" : "username",
+								"name" : "id",
 								"value" : name
 							});
 						}
@@ -49,9 +49,9 @@ jQuery.adminOrder = {
 						});
 					},
 					"aoColumns" : [ {
-						"mDataProp" : "id"
-					}, {
 						"mDataProp" : "c1"
+					}, {
+						"mDataProp" : "id"
 					}, {
 						"mDataProp" : "c2"
 					}, {

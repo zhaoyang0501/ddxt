@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pzy.entity.User;
-import com.pzy.service.ClubService;
 import com.pzy.service.UserService;
 /***
  * @author panchaoyang
@@ -26,11 +25,8 @@ import com.pzy.service.UserService;
 public class UserController {
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private ClubService clubService;
 	@RequestMapping("index")
 	public String index(Model model) {
-		model.addAttribute("clubs", clubService.findAll());
 		return "admin/user/index";
 	}
 	@RequestMapping(value = "/list", method = RequestMethod.POST)

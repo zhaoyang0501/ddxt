@@ -47,7 +47,8 @@
 								<input type="text" id="_id" placeholder='订单编号' >
 								<select id='_state' placeholder='订单状态'>
 								    <option value="">--选择订单状态--</option>
-									<option value="已提交">已提交</option>
+									<option value="暂未录入">暂未录入</option>
+									<option value="系统已接受">系统已接受</option>
 									<option value="已发货">已发货</option>
 									<option value="已付款" >已付款</option>
 								</select>

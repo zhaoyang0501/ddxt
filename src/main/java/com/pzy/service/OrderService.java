@@ -26,15 +26,15 @@ public class OrderService {
      public List<Order> findAll() {
           return (List<Order>) orderRepository.findAll();
      }
-     public Page<Order> findAll(final int pageNumber, final int pageSize,final String orderName){
+     public Page<Order> findAll(final int pageNumber, final int pageSize,final String id){
                PageRequest pageRequest = new PageRequest(pageNumber - 1, pageSize, new Sort(Direction.DESC, "id"));
               
                Specification<Order> spec = new Specification<Order>() {
                     @Override
                     public Predicate toPredicate(Root<Order> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                     Predicate predicate = cb.conjunction();
-                    if (orderName != null) {
-                         predicate.getExpressions().add(cb.like(root.get("name").as(String.class), orderName+"%"));
+                    if (id != null) {
+                    	 predicate.getExpressions().add(cb.equal(root.get("id").as(String.class), id));
                     }
                     return predicate;
                     }
@@ -42,10 +42,26 @@ public class OrderService {
                Page<Order> result = (Page<Order>) orderRepository.findAll(spec, pageRequest);
                return result;
      }
-     public void delete(Long id){
+     public Page<Order> findAll(final int pageNumber, final int pageSize,final String id,final String state){
+         PageRequest pageRequest = new PageRequest(pageNumber - 1, pageSize, new Sort(Direction.DESC, "id"));
+        
+         Specification<Order> spec = new Specification<Order>() {
+              @Override
+              public Predicate toPredicate(Root<Order> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+              Predicate predicate = cb.conjunction();
+              if (id != null) {
+                   predicate.getExpressions().add(cb.equal(root.get("id").as(String.class), id));
+              }
+              return predicate;
+              }
+         };
+         Page<Order> result = (Page<Order>) orderRepository.findAll(spec, pageRequest);
+         return result;
+     }
+     public void delete(String id){
           orderRepository.delete(id);
      }
-     public Order find(Long id){
+     public Order find(String id){
     	  return orderRepository.findOne(id);
      }
      public void save(Order order){
