@@ -52,7 +52,13 @@
 										<input placeholder="提交日期止" id="_end" style="width: 120px;" type="text" value="" readonly="readonly">
 										<span class="add-on"><i class="icon-th"></i></span>
 								</div>
-								
+								<select id='_state' placeholder='订单状态'>
+									    <option value="">--选择订单状态--</option>
+										<option value="商家未确认">商家未确认</option>
+										<option value="已确认订单">已确认订单</option>
+										<option value="已发货">已发货</option>
+										<option value="已付款" >已付款</option>
+									</select>
 								<a onclick="$.adminOrderstate.initSearchDataTable()"
 									class="btn btn-info" data-loading-text="正在加载..."><i class="icon-search"></i>查询</a>
 							</div>
@@ -69,6 +75,7 @@
 											<th >收件人</th>
 											<th >提交日期</th>
 											<th >状态</th>
+												<th >操作</th>
 										</tr>
 									</thead>
 									<tbody>

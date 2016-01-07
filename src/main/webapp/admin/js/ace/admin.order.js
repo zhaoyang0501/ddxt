@@ -53,23 +53,9 @@ jQuery.adminOrder = {
 					}, {
 						"mDataProp" : "id"
 					}, {
-						"mDataProp" : "c2"
-					}, {
-						"mDataProp" : "c3"
-					}, {
 						"mDataProp" : "c4"
-					}, {
-						"mDataProp" : "c5"
-					}, {
-						"mDataProp" : "c6"
-					},{
-						"mDataProp" : "c7"
-					},{
-						"mDataProp" : "c8"
 					},{
 						"mDataProp" : "c9"
-					},{
-						"mDataProp" : "c10"
 					}, {
 						"mDataProp" : "c11"
 					}, {
@@ -82,12 +68,6 @@ jQuery.adminOrder = {
 						"mDataProp" : "c15"
 					}, {
 						"mDataProp" : "c16"
-					},{
-						"mDataProp" : "c17"
-					},{
-						"mDataProp" : "c18"
-					},{
-						"mDataProp" : "c19"
 					}, {
 						"mDataProp" : "createDate"
 					}],

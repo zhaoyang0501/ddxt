@@ -26,7 +26,7 @@ public class PayOrder {
 	@ManyToOne(fetch = FetchType.EAGER)
 	private User user;
 	private String state;
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
 	private Date  submitDate;
 	
 	private Double pay;

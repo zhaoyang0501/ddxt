@@ -31,6 +31,7 @@ jQuery.adminOrderstate = {
 						$('[rel="popover"],[data-rel="popover"]').popover();
 					},
 					"fnServerData" : function(sSource, aoData, fnCallback) {
+						var state="";
 						var begin = $("#_begin").val();
 						if (!!begin) {
 							aoData.push({
@@ -43,6 +44,13 @@ jQuery.adminOrderstate = {
 								aoData.push({
 									"name" : "end",
 									"value" : end
+							});
+						}
+						var state = $("#_state").val();
+							if (!!state) {
+								aoData.push({
+									"name" : "state",
+									"value" : state
 							});
 						}
 						$.ajax({
@@ -71,12 +79,31 @@ jQuery.adminOrderstate = {
 						"mDataProp" : "submitDate"
 					}, {
 						"mDataProp" : "state"
+					}, {
+						"mDataProp" : "id"
 					}],
 					"aoColumnDefs" : [
 					{
 						'aTargets' : [7],
 						'fnRender' : function(oObj, sVal) {
-							 return "<span class='label label-success'>"+sVal+"</span>"
+							state=sVal;
+							if(sVal=='商家未确认')
+								return "<span class='label label-info'>"+sVal+"</span>";
+							else if(sVal=='已确认订单')
+								 return "<span class='label label-success'>"+sVal+"</span>";
+							else if(sVal=='已付款')
+								 return "<span class='label label-important'>"+sVal+"</span>";
+							 return "<span class='label'>"+sVal+"</span>";
+						}
+					},
+					{
+						'aTargets' : [8],
+						'fnRender' : function(oObj, sVal) {
+							if("商家未确认"==state)
+								return "  <button class=\"btn2 btn-info\" onclick=\"$.adminOrderstate.deleteorder("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button> ";
+							if("已付款"==state)
+								return " <button class=\"btn2 btn-info\" onclick=\"$.adminUser.confirmorder("+oObj.aData.id+")\"><i class=\"icon-edit\"></i> 确认</button>  ";
+							
 						}
 					},
 					 {
@@ -92,5 +119,43 @@ jQuery.adminOrderstate = {
 				this.userDataTable.fnDraw(oSettings);
 			}
 
-		}
+		},
+		deleteorder :function(id){
+			bootbox.confirm( "是否确认删除？", function (result) {
+		        if(result){
+		        	$.ajax({
+		    			type : "get",
+		    			url : $.ace.getContextPath() + "/admin/orderstate/delete/"+id,
+		    			dataType : "json",
+		    			success : function(json) {
+		    				if(json.state=='success'){
+		    					noty({"text":""+ json.msg +"","layout":"top","type":"success","timeout":"2000"});
+		    					$.adminOrderstate.initSearchDataTable();
+		    				}else{
+		    					noty({"text":""+ json.msg +"","layout":"top","type":"warning"});
+		    				}
+		    			}
+		    		});
+		        }
+		    });
+		},
+		confirmorder :function(id){
+			bootbox.confirm( "是否确认收款？", function (result) {
+		        if(result){
+		        	$.ajax({
+		    			type : "get",
+		    			url : $.ace.getContextPath() + "/admin/orderstate/confirm/"+id,
+		    			dataType : "json",
+		    			success : function(json) {
+		    				if(json.state=='success'){
+		    					noty({"text":""+ json.msg +"","layout":"top","type":"success","timeout":"2000"});
+		    					$.adminOrderstate.initSearchDataTable();
+		    				}else{
+		    					noty({"text":""+ json.msg +"","layout":"top","type":"warning"});
+		    				}
+		    			}
+		    		});
+		        }
+		    });
+		},
 };

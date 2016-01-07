@@ -62,14 +62,23 @@ jQuery.adminPayorderdeal = {
 							}
 						});
 					},
-					"aoColumns" : [ {
+					"aoColumns" : [ 
+					                {
 						"mDataProp" : "id"
+					},{
+						"mDataProp" : "oid"
 					}, {
-						"mDataProp" : "order.id"
+						"mDataProp" : "user.username"
 					}, {
 						"mDataProp" : "order.c4"
 					}, {
 						"mDataProp" : "order.c9"
+					},{
+						"mDataProp" : "user.p1"
+					},{
+						"mDataProp" : "user.p2"
+					},{
+						"mDataProp" : "pay"
 					}, {
 						"mDataProp" : "order.c12"
 					}, {
@@ -78,18 +87,28 @@ jQuery.adminPayorderdeal = {
 						"mDataProp" : "user.name"
 					}, {
 						"mDataProp" : "state"
-					}, {
-						"mDataProp" : ""
 					}],
 					"aoColumnDefs" : [
 					{
-						'aTargets' : [7],
+						'aTargets' : [0],
 						'fnRender' : function(oObj, sVal) {
-							 return "<span class='label label-success'>"+sVal+"</span>"
+							return "<input type='checkbox' name='checkbox' value='"+sVal+"'>";
 						}
 					},
 					{
-						'aTargets' : [8],
+						'aTargets' : [11],
+						'fnRender' : function(oObj, sVal) {
+							if(sVal=='商家未确认')
+								return "<span class='label label-info'>"+sVal+"</span>";
+							else if(sVal=='已确认订单')
+								 return "<span class='label label-success'>"+sVal+"</span>";
+							else if(sVal=='已付款')
+								 return "<span class='label label-important'>"+sVal+"</span>";
+							 return "<span class='label'>"+sVal+"</span>";
+						}
+					},
+					/*{
+						'aTargets' : [10],
 						'fnRender' : function(oObj, sVal) {
 							var operate = '<div class="btn-group">';
 							operate += '<button class="btn btn-info dropdown-toggle" data-toggle="dropdown"> 操作 <span class="caret"></span></button>';
@@ -100,7 +119,7 @@ jQuery.adminPayorderdeal = {
 							operate += '</div>';
 							return operate;
 						}
-					},
+					},*/
 					 {
 						'aTargets' : [ '_all' ],
 						'bSortable' : false,
@@ -153,5 +172,76 @@ jQuery.adminPayorderdeal = {
 	    		});
 	        }
 	    });
+	},
+	deleteall :function(id){
+		bootbox.confirm( "是否确认删除？", function (result) {
+	        if(result){
+	        	$.ajax({
+	    			type : "post",
+	    			url : $.ace.getContextPath() + "/admin/orderdeal/deleteall",
+	    			dataType : "json",
+	    			data:"id="+$.adminPayorderdeal.getcheckedvalue(),
+	    			success : function(json) {
+	    				if(json.state=='success'){
+	    					noty({"text":""+ json.msg +"","layout":"top","type":"success","timeout":"2000"});
+	    					$.adminPayorderdeal.initSearchDataTable();
+	    				}else{
+	    					noty({"text":""+ json.msg +"","layout":"top","type":"warning"});
+	    				}
+	    			}
+	    		});
+	        }
+	    });
+	},
+	sendall :function(id){
+		bootbox.confirm( "是否确认发货？", function (result) {
+	        if(result){
+	        	$.ajax({
+	    			type : "post",
+	    			url : $.ace.getContextPath() + "/admin/orderdeal/sendall",
+	    			dataType : "json",
+	    			data:"id="+$.adminPayorderdeal.getcheckedvalue(),
+	    			success : function(json) {
+	    				if(json.state=='success'){
+	    					noty({"text":""+ json.msg +"","layout":"top","type":"success","timeout":"2000"});
+	    					$.adminPayorderdeal.initSearchDataTable();
+	    				}else{
+	    					noty({"text":""+ json.msg +"","layout":"top","type":"warning"});
+	    				}
+	    			}
+	    		});
+	        }
+	    });
+	},
+	payall :function(id){
+		bootbox.confirm( "是否确认付款？", function (result) {
+	        if(result){
+	        	$.ajax({
+	    			type : "post",
+	    			url : $.ace.getContextPath() + "/admin/orderdeal/payall",
+	    			dataType : "json",
+	    			data:"id="+$.adminPayorderdeal.getcheckedvalue(),
+	    			success : function(json) {
+	    				if(json.state=='success'){
+	    					noty({"text":""+ json.msg +"","layout":"top","type":"success","timeout":"2000"});
+	    					$.adminPayorderdeal.initSearchDataTable();
+	    				}else{
+	    					noty({"text":""+ json.msg +"","layout":"top","type":"warning"});
+	    				}
+	    			}
+	    		});
+	        }
+	    });
+	},
+	getcheckedvalue:function(){
+		var v="";
+		var checks=$("input[name='checkbox']:checked");
+		for(var i=0;i<checks.size();i++){
+				if(v=='')
+					v=$(checks[i]).val();
+				else v+=","+$(checks[i]).val();
+		}
+		return v;
 	}
+
 };

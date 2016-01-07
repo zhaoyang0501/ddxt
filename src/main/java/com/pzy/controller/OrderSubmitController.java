@@ -40,12 +40,12 @@ public class OrderSubmitController {
 		
 		Order order=orderService.find(payOrder.getOid());
 		if(order==null){
-			payOrder.setState("暂未录入");
+			payOrder.setState("商家未确认");
 			model.addAttribute("state", "success");
 			model.addAttribute("tip", "订单提交成功，等待工作人员录入");
 		}else{
 			payOrder.setOrder(order);
-			payOrder.setState("系统已接受");
+			payOrder.setState("已确认订单");
 		}
 		List<PayOrder> oldpayOrders=payOrderService.findByOid(payOrder.getOid());
 		if(oldpayOrders.size()!=0){

@@ -45,7 +45,7 @@ public class PayOrderService {
                          predicate.getExpressions().add(cb.equal(root.get("user").get("username").as(String.class), user));
                     }
                     if (id != null) {
-                        predicate.getExpressions().add(cb.equal(root.get("order").get("id").as(String.class), id));
+                        predicate.getExpressions().add(cb.equal(root.get("oid").as(String.class), id));
                     }
                     if (state != null) {
                         predicate.getExpressions().add(cb.equal(root.get("state").as(String.class), state));
@@ -59,7 +59,7 @@ public class PayOrderService {
      
      
      public Page<PayOrder> findAllByUser(final int pageNumber, final int pageSize,
-    		 final Long user,final String begin,final String end) throws Exception{
+    		 final Long user,final String begin,final String end,final String state) throws Exception{
          PageRequest pageRequest = new PageRequest(pageNumber - 1, pageSize, new Sort(Direction.DESC, "id"));
         
          Specification<PayOrder> spec = new Specification<PayOrder>() {
@@ -68,6 +68,9 @@ public class PayOrderService {
               Predicate predicate = cb.conjunction();
               if (user != null) {
                    predicate.getExpressions().add(cb.equal(root.get("user").get("id").as(String.class), user));
+              }
+              if (state != null) {
+                  predicate.getExpressions().add(cb.equal(root.get("state").as(String.class), state));
               }
               if (StringUtils.isNotBlank(begin)) {
                   try {

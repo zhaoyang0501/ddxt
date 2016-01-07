@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 @Table(name = "t_order")
 public class Order {
@@ -15,7 +17,9 @@ public class Order {
 	   @GenericGenerator(name = "test", strategy = "uuid")
 	@Column(length=20)
  private String id;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
  private Date importDate;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
  private Date ipdateDate;
  private String c1;
  private String c2;
