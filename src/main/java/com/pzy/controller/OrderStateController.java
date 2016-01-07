@@ -54,6 +54,9 @@ public class OrderStateController {
 			if(payOrder.getOrder()!=null&&payOrder.getOrder().getC4()!=null){
 				payOrder.getOrder().setC4(StringUtil.getEncodeStr(payOrder.getOrder().getC4()));
 			}
+			if(payOrder.getOid()!=null){
+				payOrder.setOid(StringUtil.getEncodeStr4(payOrder.getOid()));
+			}
 		}
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("aaData", orders.getContent());

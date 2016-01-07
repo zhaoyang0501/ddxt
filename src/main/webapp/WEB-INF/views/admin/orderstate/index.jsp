@@ -75,7 +75,7 @@
 											<th >收件人</th>
 											<th >提交日期</th>
 											<th >状态</th>
-												<th >操作</th>
+											<th >操作</th>
 										</tr>
 									</thead>
 									<tbody>
