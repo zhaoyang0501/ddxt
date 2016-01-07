@@ -125,7 +125,7 @@ public class PayOrderDealController {
 				User user=bean.getUser();
 				bean.setState("已付款");
 				Double m=Double.valueOf(bean.getOrder().getC9());
-				bean.setPay(m*user.getP1()-user.getP2());
+				bean.setPay((m/100)*user.getP1()-user.getP2());
 				payOrderService.save(bean);
 			}
 			map.put("state", "success");

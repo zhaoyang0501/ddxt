@@ -65,6 +65,46 @@
 						</ul>
 						<h1 style="text-align: center;"> 欢迎使用本系统</h1>
 					</div>
+					
+				<div class="row-fluid">
+				<div class="span12">
+					<div class="switch-board gray">
+						<ul class="clearfix switch-item">
+							<li><span class="notify-tip">30</span><a href="#" class="brown"><i class="icon-user"></i><span>会员数</span></a></li>
+							<li><span class="notify-tip">4</span><a href="#" class=" blue-violate"><i class="icon-lightbulb"></i><span>订单总数</span></a></li>
+							<li><span class="notify-tip">4</span><a href="#" class="orange"><i class="icon-cogs"></i><span>未确认订单</span></a></li>
+							<li><span class="notify-tip">4</span><a href="#" class=" magenta"><i class="icon-bar-chart"></i><span>已确认订单</span></a></li>
+							<li><span class="notify-tip">30</span><a href="#" class="green"><i class="icon-shopping-cart"></i><span>已发货</span></a></li>
+							<li><span class="notify-tip">30</span><a href="#" class=" bondi-blue"><i class="icon-time"></i><span>已付款</span></a></li>
+							<li><span class="notify-tip">30</span><a href="#" class=" dark-yellow"><i class="icon-file-alt"></i><span>已确认</span></a></li>
+						</ul>
+					</div>
+				</div>
+				</div>
+					<div class="row-fluid">
+				<div class="span12">
+					<div class="content-widgets gray ">
+						<div class="widget-head bondi-blue">
+							<h3><i class="icon-ambulance"></i>公告</h3>
+						</div>
+						<div class="ribbon-wrapper-green">
+							<div class="ribbon-green">
+								NEWS
+							</div>
+						</div>
+						<div class="widget-container">
+							<h3>最新导入一批数据</h3>
+							<p>
+							欢迎大家使用，
+							</p>
+						</div>
+					</div>
+				</div>
+				</div>
+				
+			
+			
+			
 				</div>
 				
 			</div>

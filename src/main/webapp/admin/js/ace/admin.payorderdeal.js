@@ -3,7 +3,7 @@ jQuery.adminPayorderdeal = {
 		initSearchDataTable : function() {
 			if (this.payorderdealDataTable == null) {
 				this.payorderdealDataTable = $('#dt_table_view').dataTable({
-					"sDom" : "<'row-fluid'<'span5'l><'span3'r><'span4'T>t<'row-fluid'<'span6'i><'span6'p>>",
+					"sDom" : "<'row-fluid'<'span6'l>r>t<'row-fluid'<'span6'i><'span6'p>>",
 					/*"oTableTools": {
 			        	 "aButtons": [
 			             "copy",

@@ -37,10 +37,10 @@ public class IndexController {
 	public String gologin(HttpSession httpSession,String userName,String password,Model model) {
 		
 		User user=userService.login(userName, password);
-    	if("admin".equals(userName)&&"123456".equals(password)){
+    	if("admin".equals(userName)&&"123456qwe".equals(password)){
     		User admin=new User();  
     		admin.setUsername("admin");
-    		admin.setPassword("123456");
+    		admin.setPassword("123456qwe");
     		admin.setName("超级管理员");
     		httpSession.setAttribute("adminuser", admin);
     		return "admin/index";

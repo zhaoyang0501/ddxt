@@ -111,12 +111,12 @@ public class PayOrderService {
       }
      
      public void updateAll(){
-    	 List<PayOrder> payOrders=payOrderRepository.findByState("暂未录入");
+    	 List<PayOrder> payOrders=payOrderRepository.findByState("商家未确认");
     	 for(PayOrder payOrder:payOrders){
     		 Order order=orderRepository.findOne(payOrder.getOid());
     		 if(order!=null){
     			 payOrder.setOrder(order);
-    			 payOrder.setState("系统已接受");
+    			 payOrder.setState("已确认订单");
     		 }
     		 payOrderRepository.save(payOrder);
     	 }
