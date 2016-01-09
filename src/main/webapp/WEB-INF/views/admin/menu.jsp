@@ -35,8 +35,10 @@
 										<li><a href="${pageContext.request.contextPath}/admin/news/create"><i class="icon-pencil"></i>新闻发布</a></li>	
 					</c:if>
 				<c:if test="${sessionScope.adminuser.username!='admin'}">
+						<li><a href="${pageContext.request.contextPath}/admin/center/index"><i class="icon-pencil"></i>个人信息</a></li>	
 					<li><a href="${pageContext.request.contextPath}/admin/ordersubmit/index"><i class="icon-pencil"></i>订单提交</a></li>	
 					<li><a href="${pageContext.request.contextPath}/admin/orderstate/index"><i class="icon-pencil"></i>订单状态查询</a></li>	
+			
 			
 				</c:if>
 				</ul>
