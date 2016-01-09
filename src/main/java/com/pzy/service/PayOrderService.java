@@ -93,7 +93,23 @@ public class PayOrderService {
          };
          Page<PayOrder> result = (Page<PayOrder>) payOrderRepository.findAll(spec, pageRequest);
          return result;
-}
+     }
+     public Integer findAllByUserAndState(final Long user,final String state) {
+         Specification<PayOrder> spec = new Specification<PayOrder>() {
+              @Override
+              public Predicate toPredicate(Root<PayOrder> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+              Predicate predicate = cb.conjunction();
+              if (user != null) {
+                   predicate.getExpressions().add(cb.equal(root.get("user").get("id").as(String.class), user));
+              }
+              if (state != null) {
+                  predicate.getExpressions().add(cb.equal(root.get("state").as(String.class), state));
+              }
+              return predicate;
+              }
+         };
+         return  payOrderRepository.findAll(spec).size();
+     }
      public void delete(Long id){
           payOrderRepository.delete(id);
      }

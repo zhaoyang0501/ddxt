@@ -66,9 +66,9 @@ public class OrderStateController {
 		return map;
 	}
 	
-	@RequestMapping(value = "/confirm")
+	@RequestMapping(value = "/confirm/{id}")
 	@ResponseBody
-	public Map<String, Object> confirm(Long  id) {
+	public Map<String, Object> confirm(@PathVariable Long  id) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		PayOrder bean=payOrderService.find(id);
 		if(!"已付款".equals(bean.getState())){

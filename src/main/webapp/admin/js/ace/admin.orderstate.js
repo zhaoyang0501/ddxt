@@ -102,7 +102,7 @@ jQuery.adminOrderstate = {
 							if("商家未确认"==state)
 								return "  <button class=\"btn2 btn-info\" onclick=\"$.adminOrderstate.deleteorder("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button> ";
 							if("已付款"==state)
-								return " <button class=\"btn2 btn-info\" onclick=\"$.adminUser.confirmorder("+oObj.aData.id+")\"><i class=\"icon-edit\"></i> 确认</button>  ";
+								return " <button class=\"btn2 btn-info\" onclick=\"$.adminOrderstate.confirmorder("+oObj.aData.id+")\"><i class=\"icon-edit\"></i> 确认</button>  ";
 							
 						}
 					},
