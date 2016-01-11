@@ -18,7 +18,7 @@ public class FrontController {
 	private UserService userService;
 	@RequestMapping("index")
 	public String index() {
-		return "index";
+		return "admin/login";
 	}
 	
 }
