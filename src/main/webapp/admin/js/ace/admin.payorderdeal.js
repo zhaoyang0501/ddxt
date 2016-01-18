@@ -3,14 +3,14 @@ jQuery.adminPayorderdeal = {
 		initSearchDataTable : function() {
 			if (this.payorderdealDataTable == null) {
 				this.payorderdealDataTable = $('#dt_table_view').dataTable({
-					"sDom" : "<'row-fluid'<'span6'l>r>t<'row-fluid'<'span6'i><'span6'p>>",
-					/*"oTableTools": {
-			        	 "aButtons": [
-			             "copy",
-			             "xls"
-			             ],
-			            "sSwfPath": "media/swf/copy_csv_xls_pdf.swf"
-			        },*/
+					"sDom" : "<'row-fluid'<'span5'l><'span3'r><'span4'T>t<'row-fluid'<'span6'i><'span6'p>>",
+					 "oTableTools": {
+				        	 "aButtons": [
+				             "copy",
+				             "xls"
+				             ],
+				            "sSwfPath": "media/swf/copy_csv_xls_pdf.swf"
+				        },
 					"sPaginationType" : "bootstrap",
 					"oLanguage" : {
 						"sLengthMenu" : "每页显示 _MENU_ 条记录",
