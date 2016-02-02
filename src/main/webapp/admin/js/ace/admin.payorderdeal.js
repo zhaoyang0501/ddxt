@@ -28,7 +28,7 @@ jQuery.adminPayorderdeal = {
 					},
 					"bAutoWidth" : false,
 					"iDisplayLength" : 10,
-					"aLengthMenu" : [ 5, 10, 25, 50],
+					"aLengthMenu" : [ 5, 10, 50, 500,1000],
 					"bServerSide" : true,
 					"sServerMethod" : "POST",
 					"bProcessing" : true,
@@ -74,6 +74,12 @@ jQuery.adminPayorderdeal = {
 						"mDataProp" : "id"
 					},{
 						"mDataProp" : "oid"
+					},{
+						"mDataProp" : "order.c12"
+					},{
+						"mDataProp" : "order.c13"
+					},{
+						"mDataProp" : "order.c14"
 					}, {
 						"mDataProp" : "user.username"
 					}, {
@@ -86,8 +92,6 @@ jQuery.adminPayorderdeal = {
 						"mDataProp" : "user.p2"
 					},{
 						"mDataProp" : "pay"
-					}, {
-						"mDataProp" : "order.c12"
 					}, {
 						"mDataProp" : "submitDate"
 					},{
@@ -103,12 +107,12 @@ jQuery.adminPayorderdeal = {
 						}
 					},
 					{
-						'aTargets' : [11],
+						'aTargets' : [13],
 						'fnRender' : function(oObj, sVal) {
 							if(sVal=='商家未确认')
 								return "<span class='label label-info'>"+sVal+"</span>";
 							else if(sVal=='已确认订单')
-								 return "<span class='label label-success'>"+sVal+"</span>";
+								 return "<span class='label label-warning'>"+sVal+"</span>";
 							else if(sVal=='已付款')
 								 return "<span class='label label-important'>"+sVal+"</span>";
 							 return "<span class='label'>"+sVal+"</span>";

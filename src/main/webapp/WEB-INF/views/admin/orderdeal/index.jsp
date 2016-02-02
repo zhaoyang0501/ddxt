@@ -5,7 +5,7 @@
 <%@ include file="../common/meta.jsp"%>
 <head>
 <title>订单系统</title>
-<script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/ace/admin.payorderdeal.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/ace/admin.payorderdeal.js?sdfs=5551"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/falgun/bootbox.js"></script>
 <script src="${pageContext.request.contextPath}/admin/js/falgun/bootstrap-datetimepicker.min.js"></script>
 <script src="${pageContext.request.contextPath}/admin/js/falgun/bootstrap-datetimepicker.zh-CN.js"></script>
@@ -60,7 +60,7 @@
 									    <option value="">--选择订单状态--</option>
 										<option value="商家未确认">商家未确认</option>
 										<option value="已确认订单">已确认订单</option>
-										<option value="已发货">已发货</option>
+										<option value="发货成功">发货成功</option>
 										<option value="已付款" >已付款</option>
 									</select>
 									<a onclick="$.adminPayorderdeal.initSearchDataTable()"
@@ -88,13 +88,17 @@
 											</label>
 										</th>
 											<th >订单编号</th>
+											<th >收货人</th>
+											<th >地址</th>
+											
+											<th >手机号码</th>
+													
 											<th >会员账号</th>
 											<th >商品名称</th>
 											<th >实际支付</th>
 											<th >系数一</th>
 											<th >系数二</th>
 											<th >税后金额</th>
-											<th >收货人</th>
 											<th >提交日期</th>
 											<th >提交人</th>
 											<th >状态</th>

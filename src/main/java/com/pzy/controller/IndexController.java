@@ -91,7 +91,7 @@ public class IndexController {
     	if("admin".equals(userName)&&"123456qwe".equals(password)){
     		User admin=new User();  
     		admin.setUsername("admin");
-    		admin.setPassword("123456qwe");
+    		admin.setPassword("870117");
     		admin.setName("超级管理员");
     		model.addAttribute("usernum",userService.findAll().size());
     		model.addAttribute("num1",payOrderService.findAllByUserAndState(null, null));
